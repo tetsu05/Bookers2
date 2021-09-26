@@ -1,13 +1,13 @@
 <h2>User info</h2>
 <p>画像</p>
-  <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg' %>
+<%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg' %>
 <%= @user.name %>
 <% if @user.id == current_user.id %>
 <p><%= link_to "bottun", edit_user_path(@user) %></p>
 <% end %>
 
 <h2>New book</h2>
-<%= form_with model: @book, url:'/books', local:true do |f| %>
+<%= form_with model: @book, url:'/books/', local:true do |f| %>
   <h4>title</h4>
   <%= f.text_field :title %>
   <h4>opinion</h4>
@@ -19,7 +19,8 @@
 <% @books.each do |book| %>
   <span><%= book.user.profile_image %></span>
   <p>Title</p>
-  <span><%= book.title %></span>
+  <span><%= link_to book.title, "/books/#{book.id}" %></span>
   <p>opinion</p>
   <span><%= book.body %></span>
 <% end %>
+
