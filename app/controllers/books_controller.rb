@@ -4,6 +4,7 @@ class BooksController < ApplicationController
    @book = Book.new(book_params)
    @book.user_id = current_user.id
    @book.save
+   flash[:notice] = "You have  book successfully"
   redirect_to "/books/#{@book.id}"
   end
 
@@ -26,6 +27,7 @@ class BooksController < ApplicationController
   def update
     @book = Book.find(params[:id])
     @book.update(book_params)
+    flash[:notice] = "You have updated book successfully"
     redirect_to "/books/#{@book.id}"
   end
 
@@ -42,7 +44,7 @@ class BooksController < ApplicationController
 
   #private
   #def book_params
-  #  params.require(:book).permit(:title, :body)
- # end
+   # params.require(:book).permit(:title, :body)
+  #end
 
 end
