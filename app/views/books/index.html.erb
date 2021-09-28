@@ -4,17 +4,48 @@
     <%= message %>
   <% end %>
 <% end %>
+<div class="container">  <!-- この行を追加 -->
+  <div class="row">      <!-- この行を追加 -->
+<div class="col-md-3">
 <%= render 'books/book',user: @user %>
 <%= render 'books/newbook',book: @book %>
+</div>
 
+ <div class="col-md-8 offset-md-1">
 <h1>Books</h1>
-<% @books.each do |book| %>
-  <%= link_to user_path(book.user) do %>
-  <%= attachment_image_tag book.user, :profile_image, :fill, 100, 100, format: 'jpeg' %>
-  <% end %>
-  <p>Title</p>
-  <span><%= link_to book.title, "/books/#{book.id}" %></span>
-  <p>opinion</p>
-  <span><%= book.body %></span>
-<% end %>
 
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Title</th>
+      <th>Body</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @books.each do |book| %>
+      <tr>
+        <td><%= link_to user_path(book.user) do %>
+        <%= attachment_image_tag book.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+        <% end %></td>
+        <td><%= link_to book.title, "/books/#{book.id}" %></td>
+        <td><%= book.body %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>  <!-- この行を追加 -->
+</div> <!-- この行を追加 -->
+</div>
+
+<footer>
+  <div class="container mt-5">
+  	<div class="row">
+    	<div class="mx-auto">
+    		<p>CopyRight Infratop.inc</p>
+    	</div>
+    </div>
+  </div>
+</footer>

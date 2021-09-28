@@ -4,16 +4,23 @@
     <%= message %>
   <% end %>
 <% end %>
+<div class="container">
+  <div class="row">
+    <div class="mx-auto col-11 col-sm-10 col-lg-8 col-xl-6">
 <h2>User info</h2>
 <%= form_with model:@user, local:true do |f| %>
-  <label>Name</label>
+  <label style="display:block;">Name</label>
   <%= f.text_field :name %>
-  <label>Image</label>
+  <label style="display:block;">Image</label>
   <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
-  <label>Introduction</label>
+  <label style="display:block;">Introduction</label>
   <%= f.text_area :introduction %>
-  <%= f.submit "Update User" %>
+  <%= f.submit "Update User", class: "btn btn-secondary" %>
 <% end %>
+    </div>
+  </div>
+</div>
+
 <footer>
   <div class="container mt-5">
   	<div class="row">
@@ -23,3 +30,4 @@
     </div>
   </div>
 </footer>
+

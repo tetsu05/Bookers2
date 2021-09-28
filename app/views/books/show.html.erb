@@ -1,18 +1,34 @@
+<div class="container">  <!-- この行を追加 -->
+  <div class="row">      <!-- この行を追加 -->
+<div class="col-md-3">
 <%= render 'books/book',user: @user %>
 <%= render 'books/newbook',book: @booknew %>
-<h2>Book detail</h2>
-<div>
-  <%= link_to user_path(@user) do %>
-    <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg' %>
-    <%= @user.name %>
-  <% end %>
-  <p><%= link_to @book.title, "/books/#{@book.id}" %></p>
-  <p><%= @book.body %></p>
-  <p><%= link_to "Edit", edit_book_path(@book) %></p>
-  <% if @book.user == current_user %>
-    <%= link_to "Destroy", book_path(@book), method: :delete %>
-  <% end %>
 </div>
+<div class="col-md-8 offset-md-1">
+<h2>Book detail</h2>
+
+<table class="table table-striped">
+  <tbody>
+      <tr>
+        <td>
+          <%= link_to user_path(@user) do %>
+          <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+          <%= @user.name %>
+          <% end %>
+        </td>
+        <td><%= link_to @book.title, "/books/#{@book.id}" %></td>
+        <td><%= @book.body %>></td>
+        <% if @book.user == current_user %>
+        <td><%= link_to "Edit", edit_book_path(@book), class: "btn btn-success" %></td>
+        <td><%= link_to "Destroy", book_path(@book), method: :delete, class: "btn btn-danger" %></td>
+        <% end %>
+      </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+
 <footer>
   <div class="container mt-5">
   	<div class="row">

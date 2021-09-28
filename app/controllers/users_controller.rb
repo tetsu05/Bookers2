@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!,except: [:top]
 
   def index
     @user = current_user
@@ -17,7 +18,7 @@ class UsersController < ApplicationController
     if @user == current_user
       render "edit"
     else
-      redirect_to Users_path
+      redirect_to user_path(current_user)
     end
   end
 

@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+before_action :authenticate_user!,except: [:top]
 
   def index
     @user = current_user
@@ -30,7 +31,7 @@ class BooksController < ApplicationController
     if @book.user == current_user
       render "edit"
     else
-      redirect_to Books_path
+      redirect_to books_path
     end
   end
 

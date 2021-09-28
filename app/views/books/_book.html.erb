@@ -1,10 +1,17 @@
 <h2>User info</h2>
 <%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
-<p>name</p>
-<%= user.name %>
-<p>introduction</p>
-<%= user.introduction %>
-<% if user.id == current_user.id %>
-<p><%= link_to "bottun", edit_user_path(user) %></p>
+    <div class = "d-flex justify-content-between pl-3 pr-3 font-weight-bold">
+      <p>name</p>
+      <p><%= user.name %></p>
+    </div>
+    <hr/>
+    <div class = "d-flex justify-content-between pl-3 pr-3 font-weight-bold">
+      <p>introduction</p>
+      <p><%= user.introduction %></p>
+    </div>
+    <hr/>
+<p class = "text-center border">
+<%= link_to  edit_user_path(user), class: "btn btn-whiht" do %>
+  <i class="fas fa-user-cog"></i>
 <% end %>
-
+</p>
